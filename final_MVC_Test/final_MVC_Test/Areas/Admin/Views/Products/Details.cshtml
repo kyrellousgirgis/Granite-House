@@ -1,0 +1,71 @@
+﻿@model final_MVC_Test.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row d-flex">
+    <div class="col-6">
+        <h4>Product</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Available)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Available)
+            </dd>
+            @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>*@
+            <!--<dd class="col-4">-->
+                @* @Html.DisplayFor(model => model.Image)*@
+
+            <!--</dd>-->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ShadeColor)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ShadeColor)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ProductType)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ProductType.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.SpecialTag)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.SpecialTag.Name)
+            </dd>
+        </dl>
+    </div>
+    <div class="form-group col-5 mx-auto" >
+        <div class="col-2">
+        </div>
+        <img class="rounded-circle col-6 img-fluid " src="@Model.Image" />
+
+
+
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>

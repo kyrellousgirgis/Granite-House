@@ -1,0 +1,15 @@
+﻿@using final_MVC_Test
+@{
+    //Layout = "/Views/Shared/_Layout.cshtml";
+
+
+    if (User.IsInRole(SD.AdminEndUser) || User.IsInRole(SD.SuperAdminEndUser))
+    {
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "/Views/Shared/_Layout.cshtml";
+        //Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}

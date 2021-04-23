@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.Extensions.Options
+@inject IOptions<final_MVC_Test.Data.StripeSettings> Stripe
+
+
+<form asp-area="Customer" asp-action="Charge" asp-controller="ShoppingCart" method="post" id="payment-form">
+
+    <div class="form-row">
+        <label for="card-element">
+            Credit or debit card
+        </label>
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display Element errors. -->
+        <div id="card-errors" role="alert"></div>
+    </div>
+
+    <script src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="@Stripe.Value.PublishableKey"
+            data-name="Order"
+            data-description="Order">
+    </script>
+</form>

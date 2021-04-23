@@ -1,0 +1,55 @@
+﻿
+@using Microsoft.Extensions.Options
+@inject IOptions<final_MVC_Test.Data.StripeSettings> Stripe
+
+@model final_MVC_Test.Models.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "AppointmentConfirmation";
+    double totalprice = 0;
+    foreach (var item in Model.Products)
+    {
+        totalprice += item.Price;
+    }
+}
+
+<h2>AppointmentConfirmation</h2>
+
+<br />
+<h2 class="text-info">Appointment Confirmation</h2>
+<div class="form-text">
+    Your appointment has been submitted. One of our awesome Sales Rep would be in touch shortly. Please feel free to contact us anytime you have any questions.
+</div>
+<br />
+
+<partial name="~/Views/Shared/_AppointmentCustomerDetails.cshtml" model="Model.Appointment" />
+<br />
+<partial name="~/Views/Shared/_AppointmentProductDetails.cshtml" model="Model.Products" />
+<h3>Total Price: @totalprice</h3>
+
+
+
+<form asp-area="Customer" asp-action="Charge" asp-controller="ShoppingCart" method="post" id="payment-form">
+
+    <div class="form-row">
+        <label for="card-element">
+            Credit or debit card
+        </label>
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+        
+        <!-- Used to display Element errors. -->
+        <div id="card-errors" role="alert"></div>
+    </div>
+
+    <script src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="@Stripe.Value.PublishableKey"
+            data-name="Order"
+            data-description="Order">
+    </script>
+</form>
+
+
+<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-success">Back to Products</a>

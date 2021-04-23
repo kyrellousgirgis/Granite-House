@@ -1,0 +1,55 @@
+﻿@model List<final_MVC_Test.Models.Product>
+
+<br />
+<br />
+@*<form method="get" asp-action="Index" class="col-5">
+    <input name="name" type="text" class="form-control mb-3 col-5" id="name" />
+    <input type="submit" value="Search" name="submit" class="btn btn-outline-primary form-control col-5" />
+</form>*@
+
+
+<form method="get" asp-action="Index" class="row d-flex flex-row justify-content-center ">
+    <div class="col-7">
+        <input name="name" type="text" class="form-control  " placeholder="Product Type" id="name" />
+    </div>
+    <button type="submit" name="submit" class="rounded-pill col-2 btn btn-primary ">
+        <i class="fas fa-search"></i>Search
+    </button>
+</form>
+
+
+<br />
+<br />
+<div class="row">
+    @foreach (var product in Model)
+    {
+
+        <div class="col-3 ">
+            <div class="card mb-4 cardDiv rounded-3">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <label style="font-size:23px; color:steelblue;"> @product.Name</label>
+
+                    </h4>
+
+                </div>
+                <div class="col-9 mx-auto my-2">
+                    <img class="card-img-top rounded-circle img-fluid" style="height:75%" src="@product.Image" alt="Card Image" />
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <label style="font-size:20px; color:#a51313"><b>$@product.Price</b>/sq.ft</label>
+
+                        </div>
+                        <a asp-action="Details" asp-controller="Home" class="btn pull-right d-block d-sm-inline btn-outline-primary" asp-route-id="@product.Id">Details </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    }
+
+</div>

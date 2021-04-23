@@ -1,0 +1,75 @@
+﻿@model final_MVC_Test.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Available" /> @Html.DisplayNameFor(model => model.Available)
+                </label>
+            </div>
+            <!--<div class="form-group">
+        <label asp-for="Image" class="control-label"></label>
+        <input asp-for="Image" class="form-control" />-->
+            @* <span asp-validation-for="Image" class="text-danger"></span>*@
+
+
+            <!--</div>-->
+            <div class="form-group">
+                <div class="col-2">
+                    <label asp-for="Image" class="control-label"></label>
+                </div>
+                <img class="rounded-circle w-100 img-fluid" src="@Model.Image" />
+
+                <div class="col-12 mt-3">
+                    <input asp-for="Image" type="file" name="files" multiple class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ShadeColor" class="control-label"></label>
+                <input asp-for="ShadeColor" class="form-control" />
+                <span asp-validation-for="ShadeColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductTypeId" class="control-label"></label>
+                <select asp-for="ProductTypeId" class="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialTagsId" class="control-label"></label>
+                <select asp-for="SpecialTagsId" class="form-control" asp-items="ViewBag.SpecialTagsId"></select>
+                <span asp-validation-for="SpecialTagsId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-success">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
